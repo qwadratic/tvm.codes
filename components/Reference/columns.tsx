@@ -7,7 +7,7 @@ const filter = (rows: Row[], id: string, filterValue: string) => {
   return rows.filter((row: any) => row.original[id].match(re))
 }
 
-const columns = (isPrecompiled: boolean) => [
+const columns = (isPrecompiled: boolean,) => [
   {
     Header: !isPrecompiled ? 'Opcode' : 'Address',
     accessor: 'opcodeOrAddress',

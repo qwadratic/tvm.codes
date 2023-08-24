@@ -15,6 +15,7 @@ import { VM } from '@ethereumjs/vm'
 //
 import OpcodesMeta from 'opcodes.json'
 import PrecompiledMeta from 'precompiled.json'
+import {OpcodeData} from "./everscaleContext"
 import {
   IReferenceItem,
   IReferenceItemMetaList,
@@ -46,7 +47,7 @@ const gasLimit = 0xffffffffffffn
 const postMergeHardforkNames: Array<string> = ['merge', 'shanghai']
 export const prevrandaoDocName = '44_merge'
 
-type ContextProps = {
+export type ContextProps = {
   common: Common | undefined
   chains: IChain[]
   forks: HardforkConfig[]
@@ -81,7 +82,7 @@ type ContextProps = {
   resetExecution: () => void
 }
 
-const initialExecutionState = {
+export const initialExecutionState = {
   stack: [],
   storage: [],
   memory: undefined,
@@ -460,24 +461,24 @@ export const EthereumProvider: React.FC<{}> = ({ children }) => {
     const meta = OpcodesMeta as IReferenceItemMetaList
     // TODO: need to implement proper selection of doc according to selected fork (maybe similar to dynamic gas fee)
     // Hack for "difficulty" -> "prevrandao" replacement for "merge" HF
-    if (
-      CheckIfAfterMergeHardfork(selectedFork?.name) &&
-      toHex(op.code) == '44'
-    ) {
-      return {
-        ...meta[prevrandaoDocName],
-        ...{
-          opcodeOrAddress: toHex(op.code),
-          staticFee: op.fee,
-          minimumFee: 0,
-          name: 'PREVRANDAO',
-        },
-      }
-    }
+    // if (
+    //   CheckIfAfterMergeHardfork(selectedFork?.name) &&
+    //   toHex(op.code) == '44'
+    // ) {
+    //   return {
+    //     ...meta[prevrandaoDocName],
+    //     ...{
+    //       opcodeOrAddress: toHex(op.code),
+    //       staticFee: op.fee,
+    //       minimumFee: 0,
+    //       name: 'PREVRANDAO',
+    //     },
+    //   }
+    // }
     return {
-      ...meta[toHex(op.code)],
+      ...meta[op.code],
       ...{
-        opcodeOrAddress: toHex(op.code),
+        opcodeOrAddress: op.code,
         staticFee: op.fee,
         minimumFee: 0,
         name: op.fullName,
@@ -487,10 +488,10 @@ export const EthereumProvider: React.FC<{}> = ({ children }) => {
 
   const _loadOpcodes = () => {
     const opcodes: IReferenceItem[] = []
-
-    vm.evm.getActiveOpcodes!().forEach((op: Opcode) => {
+  // vm.evm.getActiveOpcodes()
+    const tvmOpcodeData = new OpcodeData().getAllOpcodes()
+    tvmOpcodeData.forEach((op: Opcode) => {
       const opcode = extractDocFromOpcode(op)
-
       opcode.minimumFee = parseInt(
         calculateOpcodeDynamicFee(opcode, common, {}),
       )
@@ -498,6 +499,7 @@ export const EthereumProvider: React.FC<{}> = ({ children }) => {
     })
 
     setOpcodes(opcodes)
+    console.log("loading opcodes passed")
   }
 
   const _loadPrecompiled = () => {

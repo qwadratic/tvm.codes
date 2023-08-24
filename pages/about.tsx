@@ -24,7 +24,7 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
       <html lang="en"></html>
       <React.Fragment>
         <Head>
-          <title> EVM Codes - About the EVM </title>
+          <title> TVM Codes - About the TVM </title>
         </Head>
         <meta
           property="og:description"
@@ -55,57 +55,81 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
 const AboutPage = () => {
   return (
     <Container className="text-sm leading-6 max-w-4xl">
-      <H1>About the EVM</H1>
-
+      <H1>About the TVM</H1>
+      <div className="caution-box">
+     <p>the verb "TVM" is referring to the Threaded virtual machine❗</p>
+      </div>
+      <br/>
       <SectionWrapper header={<H2>Introduction</H2>} anchorKey="introduction">
         <p className="pb-6">
-          <H3>What is the Ethereum Virtual Machine?</H3>
-          The Ethereum Virtual Machine (or{' '}
-          <a
-            href="https://ethereum.org/en/developers/docs/evm/"
+          <H3>What is the Threaded Virtual Machine ?</H3>
+
+          The primary purpose of the Telegram Open Network Virtual Machine (TON VM or TVM) is to execute smart-contract code in the TON Blockchain.
+          TVM must support all operations required to parse incoming messages and persistent data, and to create new messages and modify persistent data.
+          Now TVM, is used to execute smart-contract code in the masterchain(-1 workchain) and in the basechain(0 workchain). Other workchains may use other virtual machines alongside or instead of the TVM.
+
+          The stack principle forms the foundation of TVM, ensuring its efficiency and ease of implementation.
+          TVM also provides a variety of primitives for working with native data types for the TON Blockchain, such as TVM Cells.
+          More information about the structure and operation principles of TVM can be found here <a href='https://docs.everscale.network/tvm.pdf'>Telegram Open Network Virtual Machine tvm.pdf</a> is the original document designed by Nikolai Durov and modified by the Everscale Team to take into account the current changes in TVM in the Everscale blockchain.
+          For further information consider reaching out to  
+            <a href="https://tonlabs.notion.site/tonlabs/TVM-Extended-Instructions-f22fb9a10bec4f8cadd9757e7d6df51d"
             target="_blank"
             rel="noreferrer"
-            className="underline"
-          >
-            EVM
-          </a>
-          ) is a stack-based computer, responsible for the execution of smart
-          contract instructions. All EVM instructions take their parameter from
-          the stack, except for <RelativeLink to="#60" title="PUSHx" />, which
-          takes their parameters from the code. Each instruction has stack
-          inputs, the parameters that they may need, and stack outputs (their
-          return values). The list of these instructions, with their opcodes, is
-          accessible in our <RelativeLink title="reference" />.
-        </p>
+            className="underline"> TVM Extended Instructions</a>.
+            the blockchains that are using from the threaded virtual machine are currently the Venom and the Everscale blockchain which are different from the ton blockchain. 
+          </p>
         <p className="pb-8">
-          <H3>What is a smart contract?</H3>A smart contract is a set of
+          <H3>What is a smart contract?</H3>
+          A smart contract is a set of
           instructions. Each instruction is an opcode (with their own handy
-          mnemonic for reference, text representations of their assigned values
-          between 0 and 255). When the EVM executes a smart contract, it reads
-          and executes each instruction sequentially, except for{' '}
-          <RelativeLink to="#56" title="JUMP" /> and{' '}
-          <RelativeLink to="#57" title="JUMPI" /> instructions. If an
-          instruction cannot be executed, for instance, if there are not enough
-          values on the stack, or insufficient gas, the execution reverts.
-          Transaction reversion can also be triggered with the{' '}
-          <RelativeLink to="#FD" title="REVERT" /> opcode, though the{' '}
-          <RelativeLink to="#FD" title="REVERT" /> opcode refunds unused gas
-          fees of its call context, while other causes of revert consumes it
-          all. In the event of a reverted transaction, any state changes
-          dictated by the transaction instructions are returned to their state
-          before the transaction.
+          mnemonic for reference, text representations of their assigned values). The smart contracts in these blockchains are written in the solidity and t-solidity.
+
+          <H3>Accounts</H3>
+          <p>
+          In Ethereum, accounts can be externally owned (controlled by anyone with private keys) or implemented as smart contracts.
+          There is no distinction between accounts and smart contracts in the tvm based blockchains.
+          Every account is a smart contract with code, and there is no concept of an externally-owned account (owned by key pair) in the traditional sense.
+          All accounts can hold a balance, perform code, and call each other. 
+          This approach is called Account abstraction and allows for authentication through other means beyond external ownership.
+          Since every account in the tvm based blockchains is a smart contract, the contract's code can include any authentication logic necessary to verify a user's identity. 
+          The flexibility of smart contract code allows for a wide range of authentication options beyond traditional private key ownership. 
+          </p>
+        </p>
+      </SectionWrapper>
+
+      <SectionWrapper header={<H2>Messages and Transactions</H2>} anchorKey="introduction">
+        <p className="pb-6">
+          <H3>Messages</H3>
+          In TVM-based networks, messages are used for communication and instruction between accounts. 
+          Messages trigger transactions that modify the state of the receiving account. 
+          They contain instructions for executing smart contracts and consist of a header (sender/receiver details) and a body (VM instructions). 
+          Messages enable decentralized communication, data exchange, and actions among accounts in the network.
+          
+          <br/>
+          
+          <H3>Transactions</H3>
+          A transaction is a direct result of the processing of exactly one inbound message by a recipient account code.
+          When an inbound message is received by an account, it leads to the computation of the account's new state and the possibility of generating one or more outbound messages with the account serving as the source. 
+          The inbound message and the previous state of the account serve as inputs for the transaction, while the generated outbound messages and the next state of the account serve as outputs.
+          This relation can be represented as a Directed Acyclic Graph (DAG).
+
+          For further information see <a href="https://docs.venom.foundation/learn/messages-and-transactions">venom docs</a>
         </p>
       </SectionWrapper>
 
       <SectionWrapper
-        header={<H2>Execution Environment</H2>}
+        header={<H2>Execution</H2>}
         anchorKey="executionenv"
       >
+        <H3> Transaction executer</H3>
         <p className="pb-8">
-          When the EVM executes a smart contract, a context is created for it.
-          This context is made of several data regions, each with a distinct
-          purpose, as well as variables, such as the program counter, the
-          current caller, callee and the address of the current code.
+        Transaction Executor is a crucial part of tvm based blockchains nodes. 
+        It applies incoming messages to accounts, sealing the end result of this operation into a block in the form of a transaction object.
+        </p>
+        <H3> smart contract executer</H3>
+        <p className="pb-8">
+        Before executing any contract function and creating a transaction, the special code is executed. In *.code file there are two special functions: main_internal and main_external that run on internal and external messages respectively.
+        These functions initialize some internal global variables and call contract function of special function like receive, fallback, onBounce, onTickTock, etc.
         </p>
       </SectionWrapper>
 
@@ -113,32 +137,24 @@ const AboutPage = () => {
         <p className="pb-8">
           The code is the region where instructions are stored. Instruction data
           stored in the code is persistent as part of a contract account state
-          field. Externally owned accounts (or EOAs) have empty code regions.
-          Code is the bytes read, interpreted, and executed by the EVM during
+          field.
+          Code is the bytes read, interpreted, and executed by the TVM during
           smart contract execution. Code is immutable, which means it cannot be
-          modified, but it can be read with the instructions{' '}
-          <RelativeLink to="#38" title="CODESIZE" /> and{' '}
-          <RelativeLink to="#39" title="CODECOPY" />. The code of one contract
-          can be read by other contracts, with instructions{' '}
-          <RelativeLink to="#3B" title="EXTCODESIZE" /> and{' '}
-          <RelativeLink to="#3B" title="EXTCODECOPY" />.
+          modified, but it can be read with the instructions.
         </p>
       </SectionWrapper>
 
       <SectionWrapper header={<H3>The Program Counter</H3>} anchorKey="counter">
         <p className="pb-8">
           The Program Counter (PC) encodes which instruction, stored in the
-          code, should be next read by the EVM. The program counter is usually
+          code, should be next read by the TVM. The program counter is usually
           incremented by one byte, to point to the following instruction, with
           some exceptions. For instance, the{' '}
           <RelativeLink to="#60" title="PUSHx" /> instruction is longer than a
           single byte, and causes the PC to skip their parameter. The{' '}
-          <RelativeLink to="#56" title="JUMP" /> instruction does not increase
+          <RelativeLink to="#56" title="JMPX" /> instruction does not increase
           the PC's value, instead, it modifies the program counter to a position
-          specified by the top of the stack.{' '}
-          <RelativeLink to="#57" title="JUMPI" /> does this as well, if its
-          condition is true (a nonzero code value), otherwise it increments the
-          PC like other instructions.
+          specified by the top of the stack.
         </p>
       </SectionWrapper>
 

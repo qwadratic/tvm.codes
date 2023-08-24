@@ -5,7 +5,7 @@ declare global {
 }
 
 export interface IReferenceItem {
-  opcodeOrAddress: string
+  opcodeOrAddress: string | number
   name: string | undefined
   input: string
   output: string
@@ -83,4 +83,17 @@ export interface IGasDoc {
 
 export interface IGasDocs {
   [opcodeOrAddress: string]: IGasDoc
+}
+export interface TvmOpcodeStructure {
+  name: string
+  alias_of: string
+  tlb: string
+  category: string
+  opcode: string
+  fift: string
+  stack: string
+  input: string
+  output: string
+  gas: string
+  description: string
 }

@@ -57,7 +57,6 @@ const ReferenceTable = ({
   // FIXME: See: https://github.com/tannerlinsley/react-table/issues/3064
   // @ts-ignore: Waiting for 8.x of react-table to have better types
   const table = useTable({ columns, data }, useExpanded, useFilters)
-
   const {
     getTableProps,
     getTableBodyProps,
@@ -89,7 +88,6 @@ const ReferenceTable = ({
     },
     [itemDocs, selectedFork?.name],
   )
-
   // Focus and expand anchored reference
   useEffect(() => {
     if (reference && rowRefs?.current) {
@@ -143,6 +141,7 @@ const ReferenceTable = ({
   if (reference.length === 0) {
     return null
   }
+            console.log("in reference table passed ")
 
   return (
     <>
@@ -213,7 +212,6 @@ const ReferenceTable = ({
               Object.keys(reference[rowId]?.dynamicFee || {}),
               selectedFork,
             )
-
             return (
               <Fragment key={row.getRowProps().key}>
                 <tr
@@ -268,12 +266,12 @@ const ReferenceTable = ({
                               data-tip="Has additional dynamic gas cost, expand to estimate it"
                               data-for={`tip-${cell.row.id}`}
                             >
-                              <Icon name="question-line" />
+                               <Icon name="question-line" />
                               <ReactTooltip
                                 className="tooltip"
                                 effect="solid"
                                 id={`tip-${cell.row.id}`}
-                              />
+                              /> 
                             </span>
                           )}
                       </div>
@@ -300,6 +298,7 @@ const ReferenceTable = ({
       </table>
     </>
   )
+  
 }
 
 export default ReferenceTable

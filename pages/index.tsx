@@ -35,14 +35,13 @@ const HomePage = ({
         <meta property="og:type" content="website" />
         <meta property="og:title" content="EVM Codes - Opcodes" />
         <meta
-          name="description"
-          content="An Ethereum Virtual Machine Opcodes Interactive Reference"
+          name="description"          content="An Threaded Virtual Machine Opcodes Interactive Reference"
         />
       </Head>
       <EvmStorageBanner />
       <Container>
         <H1>
-          An Ethereum Virtual Machine <br></br> Opcodes Interactive Reference
+          An Threaded Virtual Machine <br></br> Opcodes Interactive Reference
         </H1>
       </Container>
 

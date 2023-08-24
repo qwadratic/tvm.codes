@@ -39,7 +39,15 @@ html {
 .code-editor .line-number {
   @apply text-gray-300 dark:text-black-400 absolute left-0 text-right w-8;
 }
-
+.caution-box {
+  background-color: transparent;
+  border: 2px solid rgb(99, 102, 241);
+  border-radius: 5px;
+  padding: 10px;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
 /*
  * Scroll bars
  */
