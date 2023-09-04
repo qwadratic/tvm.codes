@@ -1,7 +1,7 @@
 import { TvmOpcodeStructure } from '../types/index'
 import React, { createContext, useEffect, useState, useRef } from 'react'
 import { ContextProps, initialExecutionState } from './ethereumContext'
-class Opcode {
+export class Opcode {
   readonly code: string
   readonly name: string
   readonly fullName: string
