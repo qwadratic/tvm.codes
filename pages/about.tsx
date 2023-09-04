@@ -5,8 +5,15 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import HomeLayout from 'components/layouts/Home'
-import { Container, H1, H2, H3, Icon, RelativeLink } from 'components/ui'
-import { Pre } from 'components/ui/Doc'
+import {
+  Container,
+  H1,
+  H2,
+  H3,
+  Icon,
+  // RelativeLink
+} from 'components/ui'
+// import { Pre } from 'components/ui/Doc'
 
 type SectionWrapperProps = {
   header: React.ReactNode
@@ -59,77 +66,108 @@ const AboutPage = () => {
       <div className="caution-box">
         <p>"TVM" abbreviation stands for Threaded Virtual Machine</p>
       </div>
-      <br/>
+      <br />
       <SectionWrapper header={<H2>Introduction</H2>} anchorKey="introduction">
         <p className="pb-6">
           <H3>What is TVM?</H3>
-
-          The primary purpose of the TVM is to execute smart-contract code in the TVM-based Blockchains.
-          TVM must support all operations required to parse incoming messages and persistent data, and to create new messages and modify persistent data.
-          Now TVM is used to execute smart-contract code in the masterchain (-1 workchain) and in the basechain (0 workchain). Other workchains may use other virtual machines alongside or instead of the TVM.
-
-          The stack principle forms the foundation of TVM, ensuring its efficiency and ease of implementation.
-          TVM also provides a variety of primitives for working with native data types for the TVM-based Blockchains, such as TVM Cells.
-          More information about the structure and operation principles of TVM can be found here <a href='https://docs.everscale.network/tvm.pdf'>tvm.pdf</a> is the original document designed by Nikolai Durov and modified by the Everscale Team to take into account the current changes in TVM in the Everscale blockchain.
-          For further information consider reaching out to  
-            <a href="https://tonlabs.notion.site/tonlabs/TVM-Extended-Instructions-f22fb9a10bec4f8cadd9757e7d6df51d"
+          The primary purpose of the TVM is to execute smart-contract code in
+          the TVM-based Blockchains. TVM must support all operations required to
+          parse incoming messages and persistent data, and to create new
+          messages and modify persistent data. Now TVM is used to execute
+          smart-contract code in the masterchain (-1 workchain) and in the
+          basechain (0 workchain). Other workchains may use other virtual
+          machines alongside or instead of the TVM. The stack principle forms
+          the foundation of TVM, ensuring its efficiency and ease of
+          implementation. TVM also provides a variety of primitives for working
+          with native data types for the TVM-based Blockchains, such as TVM
+          Cells. More information about the structure and operation principles
+          of TVM can be found here{' '}
+          <a href="https://docs.everscale.network/tvm.pdf">tvm.pdf</a> is the
+          original document designed by Nikolai Durov and modified by the
+          Everscale Team to take into account the current changes in TVM in the
+          Everscale blockchain. For further information consider reaching out to
+          <a
+            href="https://tonlabs.notion.site/tonlabs/TVM-Extended-Instructions-f22fb9a10bec4f8cadd9757e7d6df51d"
             target="_blank"
             rel="noreferrer"
-            className="underline">TVM Extended Instructions</a>.
-          The blockchains that are using TVM are currently the Venom, Everscale, Gosh and TON. 
-          </p>
+            className="underline"
+          >
+            TVM Extended Instructions
+          </a>
+          . The blockchains that are using TVM are currently the Venom,
+          Everscale, Gosh and TON.
+        </p>
         <p className="pb-8">
-          <H3>What is a smart contract?</H3>
-          A smart contract is a set of
+          <H3>What is a smart contract?</H3>A smart contract is a set of
           instructions. Each instruction is an opcode (with their own handy
-          mnemonic for reference, text representations of their assigned values). The smart contracts in these blockchains are written in the solidity dialect called T-Sol.
-
+          mnemonic for reference, text representations of their assigned
+          values). The smart contracts in these blockchains are written in the
+          solidity dialect called T-Sol.
           <H3>Accounts</H3>
           <p>
-          In Ethereum, accounts can be externally owned (controlled by anyone with private keys) or implemented as smart contracts.
-          However, there is no distinction between accounts and smart contracts in the TVM-based blockchains.
-          Every account is a smart contract with code, and there is no concept of an externally-owned account (owned by key pair) in the traditional sense.
-          All accounts can hold a balance, perform code, and send messages to each other. 
-          This approach is called Account Abstraction and allows for authentication through other means beyond external ownership.
-          Since every account in the TVM-based blockchains is a smart contract, the contract's code can include any authentication logic necessary to verify a user's identity. 
-          The flexibility of smart contract code allows for a wide range of authentication options beyond traditional private key ownership. 
+            In Ethereum, accounts can be externally owned (controlled by anyone
+            with private keys) or implemented as smart contracts. However, there
+            is no distinction between accounts and smart contracts in the
+            TVM-based blockchains. Every account is a smart contract with code,
+            and there is no concept of an externally-owned account (owned by key
+            pair) in the traditional sense. All accounts can hold a balance,
+            perform code, and send messages to each other. This approach is
+            called Account Abstraction and allows for authentication through
+            other means beyond external ownership. Since every account in the
+            TVM-based blockchains is a smart contract, the contract's code can
+            include any authentication logic necessary to verify a user's
+            identity. The flexibility of smart contract code allows for a wide
+            range of authentication options beyond traditional private key
+            ownership.
           </p>
-        </p>
-      </SectionWrapper>
-
-      <SectionWrapper header={<H2>Messages and Transactions</H2>} anchorKey="introduction">
-        <p className="pb-6">
-          <H3>Messages</H3>
-          In TVM-based networks, messages are used for communication between accounts. 
-          Messages trigger transactions that modify the state of the receiving account. 
-          They contain instructions for executing smart contracts and consist of a header (sender/receiver details) and a body (the method to execute along with params). 
-          Messages enable decentralized communication, data exchange, and actions among accounts in the network.
-          
-          <br/>
-          
-          <H3>Transactions</H3>
-          A transaction is a direct result of the processing of exactly one inbound message by a recipient account code.
-          When an inbound message is received by an account, it leads to the computation of the account's new state and the possibility of generating one or more outbound messages with the account serving as the source. 
-          The inbound message and the previous state of the account serve as inputs for the transaction, while the generated outbound messages and the next state of the account serve as outputs.
-          This relation can be represented as a Directed Acyclic Graph (DAG).
-
-          For further information see <a href="https://docs.venom.foundation/learn/messages-and-transactions">Venom Docs</a>
         </p>
       </SectionWrapper>
 
       <SectionWrapper
-        header={<H2>Execution</H2>}
-        anchorKey="executionenv"
+        header={<H2>Messages and Transactions</H2>}
+        anchorKey="introduction"
       >
-        <H3> Transaction executer</H3>
-        <p className="pb-8">
-        Transaction Executor is a crucial part of tvm based blockchains nodes. 
-        It applies incoming messages to accounts, sealing the end result of this operation into a block in the form of a transaction object.
+        <p className="pb-6">
+          <H3>Messages</H3>
+          In TVM-based networks, messages are used for communication between
+          accounts. Messages trigger transactions that modify the state of the
+          receiving account. They contain instructions for executing smart
+          contracts and consist of a header (sender/receiver details) and a body
+          (the method to execute along with params). Messages enable
+          decentralized communication, data exchange, and actions among accounts
+          in the network.
+          <br />
+          <H3>Transactions</H3>A transaction is a direct result of the
+          processing of exactly one inbound message by a recipient account code.
+          When an inbound message is received by an account, it leads to the
+          computation of the account's new state and the possibility of
+          generating one or more outbound messages with the account serving as
+          the source. The inbound message and the previous state of the account
+          serve as inputs for the transaction, while the generated outbound
+          messages and the next state of the account serve as outputs. This
+          relation can be represented as a Directed Acyclic Graph (DAG). For
+          further information see{' '}
+          <a href="https://docs.venom.foundation/learn/messages-and-transactions">
+            Venom Docs
+          </a>
         </p>
-        <H3> smart contract executer</H3>
+      </SectionWrapper>
+
+      <SectionWrapper header={<H2>Execution</H2>} anchorKey="executionenv">
+        <H3>Transaction executor</H3>
         <p className="pb-8">
-        Before executing any contract function and creating a transaction, the special code is executed. In *.code file there are two special functions: main_internal and main_external that run on internal and external messages respectively.
-        These functions initialize some internal global variables and call contract function of special function like receive, fallback, onBounce, etc.
+          Transaction Executor is a crucial part of tvm based blockchains nodes.
+          It applies incoming messages to accounts, sealing the end result of
+          this operation into a block in the form of a transaction object.
+        </p>
+        <H3>Smart contract executer</H3>
+        <p className="pb-8">
+          Before executing any contract function and creating a transaction, the
+          special code is executed. In *.code file there are two special
+          functions: main_internal and main_external that run on internal and
+          external messages respectively. These functions initialize some
+          internal global variables and call contract function of special
+          function like receive, fallback, onBounce, etc.
         </p>
       </SectionWrapper>
 
@@ -137,9 +175,9 @@ const AboutPage = () => {
         <p className="pb-8">
           The code is the region where instructions are stored. Instruction data
           stored in the code is persistent as part of a contract account state
-          field.
-          Code is the bytes read, interpreted, and executed by the TVM during
-          smart contract execution. Code can be upgraded if its written in a way to allow the upgrade.
+          field. Code is the bytes read, interpreted, and executed by the TVM
+          during smart contract execution. Code can be upgraded if its written
+          in a way to allow the upgrade.
         </p>
       </SectionWrapper>
 

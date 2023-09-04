@@ -8,7 +8,7 @@ export class OpcodeData {
   aliasOfs: string[]
   tlbs: string[]
   Categories: string[]
-  opcodes: string[]
+  opcodes: number[]
   Fifts: string[]
   stacks: string[]
   inputs: string[]
@@ -24,7 +24,7 @@ export class OpcodeData {
     this.aliasOfs = tempJson.map((key) => key[1].alias_of)
     this.tlbs = tempJson.map((key) => key[1].tlb)
     this.Categories = tempJson.map((key) => key[1].category)
-    this.opcodes = tempJson.map((key) => key[1].opcode)
+    this.opcodes = tempJson.map((key) => parseInt(key[1].opcode))
     this.Fifts = tempJson.map((key) => key[1].fift)
     this.inputs = tempJson.map((key) => key[1].input)
     this.outputs = tempJson.map((key) => key[1].output)
@@ -38,9 +38,9 @@ export class OpcodeData {
     this.opcodes.forEach((opcode, index) => {
       let tempOpcode = new Opcode({
         code: opcode,
-        name: this.getNameByOpcode(opcode)!,
-        fullName: this.getNameByOpcode(opcode)!,
-        fee: Number(this.getGasValueByOpcode(opcode)),
+        name: this.getNameByOpcode(opcode.toString())!,
+        fullName: this.getNameByOpcode(opcode.toString())!,
+        fee: Number(this.getGasValueByOpcode(opcode.toString())),
         isAsync: false,
         dynamicGas: false,
       })

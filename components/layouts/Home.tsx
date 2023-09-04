@@ -11,9 +11,7 @@ const HomeLayout: NextPage = ({ children }) => {
     <>
       <html lang="en"></html>
       <Head>
-        <title>
-          EVM Codes - A TVM Opcodes Interactive Reference
-        </title>
+        <title>EVM Codes - A TVM Opcodes Interactive Reference</title>
         <meta property="og:type" content="website" />
         <meta property="og:title" content="EVM Codes" />
         <meta

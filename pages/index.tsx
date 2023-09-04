@@ -13,7 +13,7 @@ import { IItemDocs, IGasDocs, IDocMeta } from 'types'
 import { EthereumContext } from 'context/ethereumContext'
 
 import ContributeBox from 'components/ContributeBox'
-import EvmStorageBanner from 'components/EvmStorageBanner'
+// import EvmStorageBanner from 'components/EvmStorageBanner'
 import HomeLayout from 'components/layouts/Home'
 import ReferenceTable from 'components/Reference'
 import { H1, Container } from 'components/ui'
@@ -35,14 +35,13 @@ const HomePage = ({
         <meta property="og:type" content="website" />
         <meta property="og:title" content="TVM Codes - Opcodes" />
         <meta
-          name="description"          content="A TVM Opcodes Interactive Reference"
+          name="description"
+          content="A TVM Opcodes Interactive Reference"
         />
       </Head>
       {/* <EvmStorageBanner /> */}
       <Container>
-        <H1>
-          A TVM Opcodes Interactive Reference
-        </H1>
+        <H1>A TVM Opcodes Interactive Reference</H1>
       </Container>
 
       <section className="py-10 md:py-20 bg-gray-50 dark:bg-black-700">

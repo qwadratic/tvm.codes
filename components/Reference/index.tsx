@@ -141,7 +141,7 @@ const ReferenceTable = ({
   if (reference.length === 0) {
     return null
   }
-            console.log("in reference table passed ")
+  console.log('in reference table passed')
 
   return (
     <>
@@ -266,12 +266,12 @@ const ReferenceTable = ({
                               data-tip="Has additional dynamic gas cost, expand to estimate it"
                               data-for={`tip-${cell.row.id}`}
                             >
-                               <Icon name="question-line" />
+                              <Icon name="question-line" />
                               <ReactTooltip
                                 className="tooltip"
                                 effect="solid"
                                 id={`tip-${cell.row.id}`}
-                              /> 
+                              />
                             </span>
                           )}
                       </div>
@@ -298,7 +298,6 @@ const ReferenceTable = ({
       </table>
     </>
   )
-  
 }
 
 export default ReferenceTable

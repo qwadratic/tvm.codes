@@ -173,7 +173,7 @@ export const calculateDynamicFee = (
   common: Common,
   inputs: any,
 ) => {
-  if (opcodeOrPrecompiled.opcodeOrAddress.startsWith('0x')) {
+  if (opcodeOrPrecompiled.opcodeOrAddress.toString().startsWith('0x')) {
     return calculatePrecompiledDynamicFee(opcodeOrPrecompiled, common, inputs)
   } else {
     return calculateOpcodeDynamicFee(opcodeOrPrecompiled, common, inputs)

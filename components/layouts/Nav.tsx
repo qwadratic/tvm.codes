@@ -5,12 +5,12 @@ import Link from 'next/link'
 
 import { GITHUB_REPO_URL } from 'util/constants'
 
-import KBarButton from 'components/KBar/Button'
+// import KBarButton from 'components/KBar/Button'
 import NavLink from 'components/NavLink'
 import ThemeSelector from 'components/ThemeSelector'
 import { Container, Logo, Hamburger } from 'components/ui'
 
-import ChainSelector from '../ChainSelector'
+// import ChainSelector from '../ChainSelector'
 
 const Nav = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(false)

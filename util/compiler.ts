@@ -122,7 +122,7 @@ export const getMnemonicFromBytecode = (
     return ''
   }
 
-  const opcodeMap: Record<string, string> = {}
+  const opcodeMap: Record<string, number | string> = {}
   opcodes.forEach((c) => {
     opcodeMap[c.name as string] = c.opcodeOrAddress
   })

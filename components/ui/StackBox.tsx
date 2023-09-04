@@ -20,7 +20,7 @@ export const StackBox: React.FC<Props> = ({
   }
 
   const parts = value.split(/[^\\]\|/)
-  console.log("its the value of the stack box : ", value )
+  console.log('its the value of the stack box : ', value)
   return (
     <>
       {(parts.length > 0 ? parts : [value]).map((p: string, index: number) => (

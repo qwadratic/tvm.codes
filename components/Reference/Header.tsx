@@ -1,15 +1,18 @@
-import { useContext } from 'react'
+// import { useContext } from 'react'
 
-import { EthereumContext } from 'context/ethereumContext'
+// import { EthereumContext } from 'context/ethereumContext'
 
-import { H2, Label } from 'components/ui'
+import {
+  H2,
+  // Label
+} from 'components/ui'
 
 type Props = {
   isPrecompiled?: boolean
 }
 
 const ReferenceHeader = ({ isPrecompiled }: Props) => {
-  const { selectedFork } = useContext(EthereumContext)
+  // const { selectedFork } = useContext(EthereumContext)
 
   return (
     <H2 className="pb-8 md:pb-0 inline-flex items-center">
