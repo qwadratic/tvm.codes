@@ -12,7 +12,7 @@ const Footer = () => {
               Brought to you by{' '}
               <a
                 className="underline font-medium"
-                href="https://smlxl.io"
+                href="https://broxus.com"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -21,7 +21,7 @@ const Footer = () => {
               .
             </span>
 
-            <span className="md:mx-2">
+            {/* <span className="md:mx-2">
               Powered by{' '}
               <a
                 className="underline font-medium"
@@ -41,7 +41,7 @@ const Footer = () => {
                 SolcJS
               </a>
               .
-            </span>
+            </span> */}
           </div>
 
           <div>
