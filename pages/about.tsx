@@ -24,11 +24,11 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
       <html lang="en"></html>
       <React.Fragment>
         <Head>
-          <title> TVM Codes - About the TVM </title>
+          <title>TVM Codes - About TVM </title>
         </Head>
         <meta
           property="og:description"
-          content="How does the EVM work? We explain the relationship between opcode
+          content="How does the TVM work? We explain the relationship between opcode
           instructions, gas costs, storage and the execution environment for
           your understanding."
         />
@@ -57,41 +57,41 @@ const AboutPage = () => {
     <Container className="text-sm leading-6 max-w-4xl">
       <H1>About the TVM</H1>
       <div className="caution-box">
-     <p>the verb "TVM" is referring to the Threaded virtual machine❗</p>
+        <p>"TVM" abbreviation stands for Threaded Virtual Machine</p>
       </div>
       <br/>
       <SectionWrapper header={<H2>Introduction</H2>} anchorKey="introduction">
         <p className="pb-6">
-          <H3>What is the Threaded Virtual Machine ?</H3>
+          <H3>What is TVM?</H3>
 
-          The primary purpose of the Telegram Open Network Virtual Machine (TON VM or TVM) is to execute smart-contract code in the TON Blockchain.
+          The primary purpose of the TVM is to execute smart-contract code in the TVM-based Blockchains.
           TVM must support all operations required to parse incoming messages and persistent data, and to create new messages and modify persistent data.
-          Now TVM, is used to execute smart-contract code in the masterchain(-1 workchain) and in the basechain(0 workchain). Other workchains may use other virtual machines alongside or instead of the TVM.
+          Now TVM is used to execute smart-contract code in the masterchain (-1 workchain) and in the basechain (0 workchain). Other workchains may use other virtual machines alongside or instead of the TVM.
 
           The stack principle forms the foundation of TVM, ensuring its efficiency and ease of implementation.
-          TVM also provides a variety of primitives for working with native data types for the TON Blockchain, such as TVM Cells.
-          More information about the structure and operation principles of TVM can be found here <a href='https://docs.everscale.network/tvm.pdf'>Telegram Open Network Virtual Machine tvm.pdf</a> is the original document designed by Nikolai Durov and modified by the Everscale Team to take into account the current changes in TVM in the Everscale blockchain.
+          TVM also provides a variety of primitives for working with native data types for the TVM-based Blockchains, such as TVM Cells.
+          More information about the structure and operation principles of TVM can be found here <a href='https://docs.everscale.network/tvm.pdf'>tvm.pdf</a> is the original document designed by Nikolai Durov and modified by the Everscale Team to take into account the current changes in TVM in the Everscale blockchain.
           For further information consider reaching out to  
             <a href="https://tonlabs.notion.site/tonlabs/TVM-Extended-Instructions-f22fb9a10bec4f8cadd9757e7d6df51d"
             target="_blank"
             rel="noreferrer"
-            className="underline"> TVM Extended Instructions</a>.
-            the blockchains that are using from the threaded virtual machine are currently the Venom and the Everscale blockchain which are different from the ton blockchain. 
+            className="underline">TVM Extended Instructions</a>.
+          The blockchains that are using TVM are currently the Venom, Everscale, Gosh and TON. 
           </p>
         <p className="pb-8">
           <H3>What is a smart contract?</H3>
           A smart contract is a set of
           instructions. Each instruction is an opcode (with their own handy
-          mnemonic for reference, text representations of their assigned values). The smart contracts in these blockchains are written in the solidity and t-solidity.
+          mnemonic for reference, text representations of their assigned values). The smart contracts in these blockchains are written in the solidity dialect called T-Sol.
 
           <H3>Accounts</H3>
           <p>
           In Ethereum, accounts can be externally owned (controlled by anyone with private keys) or implemented as smart contracts.
-          There is no distinction between accounts and smart contracts in the tvm based blockchains.
+          However, there is no distinction between accounts and smart contracts in the TVM-based blockchains.
           Every account is a smart contract with code, and there is no concept of an externally-owned account (owned by key pair) in the traditional sense.
-          All accounts can hold a balance, perform code, and call each other. 
-          This approach is called Account abstraction and allows for authentication through other means beyond external ownership.
-          Since every account in the tvm based blockchains is a smart contract, the contract's code can include any authentication logic necessary to verify a user's identity. 
+          All accounts can hold a balance, perform code, and send messages to each other. 
+          This approach is called Account Abstraction and allows for authentication through other means beyond external ownership.
+          Since every account in the TVM-based blockchains is a smart contract, the contract's code can include any authentication logic necessary to verify a user's identity. 
           The flexibility of smart contract code allows for a wide range of authentication options beyond traditional private key ownership. 
           </p>
         </p>
@@ -100,9 +100,9 @@ const AboutPage = () => {
       <SectionWrapper header={<H2>Messages and Transactions</H2>} anchorKey="introduction">
         <p className="pb-6">
           <H3>Messages</H3>
-          In TVM-based networks, messages are used for communication and instruction between accounts. 
+          In TVM-based networks, messages are used for communication between accounts. 
           Messages trigger transactions that modify the state of the receiving account. 
-          They contain instructions for executing smart contracts and consist of a header (sender/receiver details) and a body (VM instructions). 
+          They contain instructions for executing smart contracts and consist of a header (sender/receiver details) and a body (the method to execute along with params). 
           Messages enable decentralized communication, data exchange, and actions among accounts in the network.
           
           <br/>
@@ -113,7 +113,7 @@ const AboutPage = () => {
           The inbound message and the previous state of the account serve as inputs for the transaction, while the generated outbound messages and the next state of the account serve as outputs.
           This relation can be represented as a Directed Acyclic Graph (DAG).
 
-          For further information see <a href="https://docs.venom.foundation/learn/messages-and-transactions">venom docs</a>
+          For further information see <a href="https://docs.venom.foundation/learn/messages-and-transactions">Venom Docs</a>
         </p>
       </SectionWrapper>
 
@@ -129,7 +129,7 @@ const AboutPage = () => {
         <H3> smart contract executer</H3>
         <p className="pb-8">
         Before executing any contract function and creating a transaction, the special code is executed. In *.code file there are two special functions: main_internal and main_external that run on internal and external messages respectively.
-        These functions initialize some internal global variables and call contract function of special function like receive, fallback, onBounce, onTickTock, etc.
+        These functions initialize some internal global variables and call contract function of special function like receive, fallback, onBounce, etc.
         </p>
       </SectionWrapper>
 
@@ -139,12 +139,11 @@ const AboutPage = () => {
           stored in the code is persistent as part of a contract account state
           field.
           Code is the bytes read, interpreted, and executed by the TVM during
-          smart contract execution. Code is immutable, which means it cannot be
-          modified, but it can be read with the instructions.
+          smart contract execution. Code can be upgraded if its written in a way to allow the upgrade.
         </p>
       </SectionWrapper>
 
-      <SectionWrapper header={<H3>The Program Counter</H3>} anchorKey="counter">
+      {/* <SectionWrapper header={<H3>The Program Counter</H3>} anchorKey="counter">
         <p className="pb-8">
           The Program Counter (PC) encodes which instruction, stored in the
           code, should be next read by the TVM. The program counter is usually
@@ -156,9 +155,9 @@ const AboutPage = () => {
           the PC's value, instead, it modifies the program counter to a position
           specified by the top of the stack.
         </p>
-      </SectionWrapper>
+      </SectionWrapper> */}
 
-      <SectionWrapper header={<H3>The Stack</H3>} anchorKey="stack">
+      {/* <SectionWrapper header={<H3>The Stack</H3>} anchorKey="stack">
         <p className="pb-8">
           The stack is a list of 32-byte elements used to store smart contract
           instruction inputs and outputs. There is one stack created per call
@@ -172,9 +171,9 @@ const AboutPage = () => {
           <RelativeLink to="#80" title="DUP1" />, or{' '}
           <RelativeLink to="#90" title="SWAP1" />.
         </p>
-      </SectionWrapper>
+      </SectionWrapper> */}
 
-      <SectionWrapper header={<H3>The Memory</H3>} anchorKey="memory">
+      {/* <SectionWrapper header={<H3>The Memory</H3>} anchorKey="memory">
         <p className="pb-8">
           EVM memory is not persistent, and is destroyed at the end of the call
           context. At the start of a call context, memory is initialized to 0.
@@ -190,9 +189,9 @@ const AboutPage = () => {
           />{' '}
           later in this document.
         </p>
-      </SectionWrapper>
+      </SectionWrapper> */}
 
-      <SectionWrapper header={<H3>The Storage</H3>} anchorKey="storage">
+      {/* <SectionWrapper header={<H3>The Storage</H3>} anchorKey="storage">
         <p className="pb-8">
           Storage is a map of 32-byte slots to 32-byte values. Storage is the
           persistent memory of smart contracts: each value written by the
@@ -204,9 +203,9 @@ const AboutPage = () => {
           instructions <RelativeLink to="#54" title="SLOAD" /> and{' '}
           <RelativeLink to="#55" title="SSTORE" />.
         </p>
-      </SectionWrapper>
+      </SectionWrapper> */}
 
-      <SectionWrapper header={<H3>The calldata</H3>} anchorKey="calldata">
+      {/* <SectionWrapper header={<H3>The calldata</H3>} anchorKey="calldata">
         <p className="pb-8">
           The calldata region is the data sent to a transaction as part of a
           smart contract transaction. For example, when creating a contract,
@@ -219,9 +218,9 @@ const AboutPage = () => {
           creates an internal transaction. As a result, when executing xCALL,
           there is a calldata region in the new context.
         </p>
-      </SectionWrapper>
+      </SectionWrapper> */}
 
-      <SectionWrapper header={<H3>The return data</H3>} anchorKey="returndata">
+      {/* <SectionWrapper header={<H3>The return data</H3>} anchorKey="returndata">
         <p className="pb-8">
           The return data is the way a smart contract can return a value after a
           call. It can be set by contract calls through the{' '}
@@ -231,9 +230,9 @@ const AboutPage = () => {
           <RelativeLink to="#3D" title="RETURNDATASIZE" /> and{' '}
           <RelativeLink to="#3E" title="RETURNDATACOPY" />.
         </p>
-      </SectionWrapper>
+      </SectionWrapper> */}
 
-      <SectionWrapper header={<H2>Gas Costs</H2>} anchorKey="gascosts">
+      {/* <SectionWrapper header={<H2>Gas Costs</H2>} anchorKey="gascosts">
         <p className="pb-4">
           Each transaction on the Ethereum blockchain is vetted by a third-party
           validator, before it is added to the blockchain. These validators are
@@ -324,8 +323,8 @@ const AboutPage = () => {
           </a>
           .
         </p>
-      </SectionWrapper>
-      <SectionWrapper
+      </SectionWrapper> */}
+      {/* <SectionWrapper
         header={<H3>Memory Expansion</H3>}
         anchorKey="memoryexpansion"
       >
@@ -383,9 +382,9 @@ const AboutPage = () => {
           parameter of 0 will not trigger memory expansion, regardless of their
           offset parameters.
         </p>
-      </SectionWrapper>
+      </SectionWrapper> */}
 
-      <SectionWrapper header={<H3>Access Sets</H3>} anchorKey="accesssets">
+      {/* <SectionWrapper header={<H3>Access Sets</H3>} anchorKey="accesssets">
         <p className="pb-6">
           Access sets are defined per external transaction, and not per call.
           Each transaction may be defined by some combination of its sender,
@@ -437,9 +436,9 @@ const AboutPage = () => {
           is warm or cold. After the hardfork <b>Berlin</b>, all precompiled
           contract addresses are always ‘warm’.
         </p>
-      </SectionWrapper>
+      </SectionWrapper> */}
 
-      <SectionWrapper header={<H3>Gas Refunds</H3>} anchorKey="gasrefunds">
+      {/* <SectionWrapper header={<H3>Gas Refunds</H3>} anchorKey="gasrefunds">
         <p className="pb-8">
           Some opcodes can trigger gas refunds, which reduces the gas cost of a
           transaction. Gas refunds are applied at the end of a transaction. If a
@@ -452,9 +451,9 @@ const AboutPage = () => {
           <RelativeLink to="#FF" title="SELFDESTRUCT" /> opcode cannot trigger
           gas refunds, only <RelativeLink to="#55" title="SSTORE" />.
         </p>
-      </SectionWrapper>
+      </SectionWrapper> */}
 
-      <SectionWrapper
+      {/* <SectionWrapper
         header={<H2>Other EVM Related Resources</H2>}
         anchorKey="otherevmresources"
       >
@@ -531,7 +530,7 @@ const AboutPage = () => {
             for more writeups about the EVM, and other blockchain concepts.
           </p>
         </em>
-      </SectionWrapper>
+      </SectionWrapper> */}
     </Container>
   )
 }

@@ -14,7 +14,7 @@ const ReferenceHeader = ({ isPrecompiled }: Props) => {
   return (
     <H2 className="pb-8 md:pb-0 inline-flex items-center">
       <span>{!isPrecompiled ? 'Instructions' : 'Precompiled Contracts'}</span>
-      {selectedFork && <Label>{selectedFork.name}</Label>}
+      {/* {selectedFork && <Label>{selectedFork.name}</Label>} */}
     </H2>
   )
 }

@@ -12,13 +12,13 @@ const HomeLayout: NextPage = ({ children }) => {
       <html lang="en"></html>
       <Head>
         <title>
-          EVM Codes - An Threaded Virtual Machine Opcodes Interactive Reference
+          EVM Codes - A TVM Opcodes Interactive Reference
         </title>
         <meta property="og:type" content="website" />
         <meta property="og:title" content="EVM Codes" />
         <meta
           property="og:description"
-          content="An Threaded Virtual Machine Opcodes Interactive Reference"
+          content="A TVM Opcodes Interactive Reference"
         />
         <meta property="og:image" content={`${getAbsoluteURL('/og.png')}`} />
         <meta property="og:url" content={getAbsoluteURL()} />

@@ -33,15 +33,15 @@ const HomePage = ({
     <>
       <Head>
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="EVM Codes - Opcodes" />
+        <meta property="og:title" content="TVM Codes - Opcodes" />
         <meta
-          name="description"          content="An Threaded Virtual Machine Opcodes Interactive Reference"
+          name="description"          content="A TVM Opcodes Interactive Reference"
         />
       </Head>
-      <EvmStorageBanner />
+      {/* <EvmStorageBanner /> */}
       <Container>
         <H1>
-          An Threaded Virtual Machine <br></br> Opcodes Interactive Reference
+          A TVM Opcodes Interactive Reference
         </H1>
       </Container>
 
